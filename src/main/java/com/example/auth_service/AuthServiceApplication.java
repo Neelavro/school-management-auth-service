@@ -13,10 +13,5 @@ public class AuthServiceApplication {
 		SpringApplication.run(AuthServiceApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner run(UserRepository userRepository) {
-		return args -> {
-			System.out.println("Users count: " + userRepository.count());
-		};
-	}
+
 }
