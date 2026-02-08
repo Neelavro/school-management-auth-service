@@ -1,5 +1,6 @@
 package com.example.auth_service.controller;
 
+import com.example.auth_service.dto.UserResponse;
 import com.example.auth_service.entity.User;
 import com.example.auth_service.payload.ApiResponse;
 import com.example.auth_service.service.UserService;
@@ -20,15 +21,15 @@ public class UserController {
 
     // 1️⃣ Register a new user
     @PostMapping("/register")
-    public ResponseEntity<ApiResponse<User>> registerUser(@RequestBody User user) {
-        User createdUser = userService.registerUser(user);
+    public ResponseEntity<ApiResponse<UserResponse>> registerUser(@RequestBody User user) {
+        UserResponse createdUser = userService.registerUser(user);
         return ResponseEntity.ok(new ApiResponse<>("User registered successfully", createdUser));
     }
 
     // 2️⃣ Sign in a user
     @PostMapping("/signin")
-    public ResponseEntity<ApiResponse<User>> signInUser(@RequestBody User user) {
-        User retrievedUser = userService.signInUser(user.getEmail(), user.getPassword());
+    public ResponseEntity<ApiResponse<UserResponse>> signInUser(@RequestBody User user) {
+        UserResponse retrievedUser = userService.signInUser(user.getPhone(), user.getPassword());
         if (retrievedUser != null ) {
             return ResponseEntity.ok(new ApiResponse<>("User signed in successfully", retrievedUser));
         } else {
