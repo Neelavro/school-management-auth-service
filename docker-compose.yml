@@ -6,7 +6,7 @@ services:
     ports:
       - "${SERVER_PORT:-8080}:8080"
     environment:
-      DB_URL: jdbc:mysql://host.docker.internal:3306/auth_service_db
+      DB_URL: jdbc:mysql://172.17.0.1:3306/auth_service_db
       DB_USERNAME: ${DB_USERNAME:-technonix}
       DB_PASSWORD: ${DB_PASSWORD:-Technonix@123}
       SERVER_ADDRESS: 0.0.0.0
