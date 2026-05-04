@@ -4,12 +4,12 @@ services:
     container_name: auth-service-app
     restart: unless-stopped
     ports:
-      - "${SERVER_PORT:-8080}:8080"
+      - "${SERVER_PORT}:8080"
     environment:
       DB_URL: jdbc:mysql://172.17.0.1:3306/auth_service_db
-      DB_USERNAME: ${DB_USERNAME:-technonix}
-      DB_PASSWORD: ${DB_PASSWORD:-Technonix@123}
-      SERVER_ADDRESS: 0.0.0.0
-      SERVER_PORT: 8080
-      JWT_SECRET: ${JWT_SECRET:-22349a84-1f39-4265-802e-87dbc47c90ef}
-      JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS:-86400000}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      SERVER_ADDRESS: ${SERVER_ADDRESS}
+      SERVER_PORT: ${SERVER_PORT}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS}
