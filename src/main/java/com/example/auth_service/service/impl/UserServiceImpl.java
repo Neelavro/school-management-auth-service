@@ -36,16 +36,18 @@ public class UserServiceImpl implements UserService {
         return new UserResponse(user);
     }
     @Override
-    public Optional<User> updateUser(Long id,User userDetails){
-        Optional<User> user = userRepository.findById(id);
-        if(user.isPresent()){
-            userRepository.save(userDetails);
-            return  user;
-        }
-        else{
-            return Optional.empty();
-        }
-
+    public Optional<User> updateUser(Long id, User userDetails) {
+        return userRepository.findById(id).map(existing -> {
+            if (userDetails.getPhone() != null)
+                existing.setPhone(userDetails.getPhone());
+            if (userDetails.getPassword() != null)
+                existing.setPassword(passwordEncoder.encode(userDetails.getPassword()));
+            if (userDetails.getRole() != null)
+                existing.setRole(userDetails.getRole());
+            if (userDetails.getIsActive() != null)
+                existing.setIsActive(userDetails.getIsActive());
+            return userRepository.save(existing);
+        });
     }
 
     @Override
